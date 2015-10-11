@@ -50,16 +50,19 @@ public class Main {
         member.setCity("Seouel");
         member.setStreet("41");
         member.setZipcode("153-013");
-        
-        
-        Category category = new Category();
-        Category parentCategory = em.find(Category.class, "2c9c1e9c503f36b001503f36b2ac0000");
-        
-        category.setName("카테고리1");
-        category.setParent(parentCategory);
-        
-        
-        //addItem(em, "2c9c1e9c503f36b001503f36b2ac0000");
+        member.setAge(39);
+
+        if(null == getMember(em, "M001")){
+            addMember(em, member);
+        }
+
+
+        Category categoryPaerent =  addCateogry(em, "카테고리1");
+        Category categoryChild = addChildCategory(em, categoryPaerent);
+
+
+        addItem(em, categoryPaerent.getId());
+        addItem(em, categoryChild.getId());
         
         //회원등록
         //em.persist(member);
@@ -84,7 +87,69 @@ public class Main {
 //      em.remove(member);
 
     }
-    
+
+    /**
+     * get Member info
+     * @param em
+     * @param memberId
+     * @return
+     */
+    public static Member getMember(EntityManager em, String memberId){
+
+        Member findMember = em.find(Member.class, memberId);
+
+        return findMember;
+    }
+
+    /**
+     * add MemberInfo
+     * @param em
+     * @param user
+     */
+    public static void addMember(EntityManager em, Member user){
+
+        Member member = new Member();
+        member.setName(user.getName());
+        member.setCity(user.getCity());
+        member.setStreet(user.getStreet());
+        member.setZipcode(user.getZipcode());
+
+        em.persist(member);
+    }
+
+    /**
+     * add CategoryInfo
+     * @param em
+     * @param categoryName
+     * @return
+     */
+    public static Category addCateogry(EntityManager em, String categoryName){
+
+        Category category = new Category();
+        category.setName(categoryName);
+
+        em.persist(category);
+
+        return category;
+    }
+
+    /**
+     * adds childCategorys
+     * @param em
+     * @param parentCategory
+     * @return
+     */
+    public static Category addChildCategory(EntityManager em, Category parentCategory){
+        Category childCategory = new Category();
+        childCategory.setName(parentCategory.getName().concat("-부하"));
+        childCategory.setParent(parentCategory);
+
+        em.persist(childCategory);
+
+        return childCategory;
+    }
+
+
     /**
      * 카테고리 정보 get
      * 카테고리 물품 mepping

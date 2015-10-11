@@ -23,6 +23,7 @@ public class Member {
     private String id;
 
     private String name;
+    private int age;
 
     private String city;
     private String street;
@@ -78,5 +79,13 @@ public class Member {
 
     public void setOrders(List<Order> orders) {
         this.orders = orders;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 }
