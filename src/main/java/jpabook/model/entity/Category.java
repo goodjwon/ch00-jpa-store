@@ -19,8 +19,11 @@ import org.hibernate.annotations.GenericGenerator;
 public class Category {
 	
 	
-	@Id @GeneratedValue(generator="system-uuid")
-	@GenericGenerator(name="system-uuid", strategy = "uuid")
+	//@Id @GeneratedValue(generator="system-uuid")
+	//@GenericGenerator(name="system-uuid", strategy = "uuid")
+    @Id
+    @GenericGenerator(name="category_seq_id", strategy="jpabook.codes.CategoryCodeGenerator")
+    @GeneratedValue(generator="category_seq_id")
 	@Column(name="CATEGORY_ID")
 	private String id;
 	private String name;

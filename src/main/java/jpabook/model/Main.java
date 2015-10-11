@@ -55,11 +55,11 @@ public class Main {
         Category category = new Category();
         Category parentCategory = em.find(Category.class, "2c9c1e9c503f36b001503f36b2ac0000");
         
-        category.setName("카테고리1-2");
+        category.setName("카테고리1");
         category.setParent(parentCategory);
         
         
-        addItem(em, "2c9c1e9c503f36b001503f36b2ac0000");
+        //addItem(em, "2c9c1e9c503f36b001503f36b2ac0000");
         
         //회원등록
         //em.persist(member);
