@@ -175,15 +175,8 @@ public class Main {
         item.setStockQuantity(159);
         
         em.persist(item);
-        
-        System.out.println(item.toString());
-        
         categoryItem.setItem(item);
-        
         em.persist(categoryItem);
-        
-        System.out.println(categoryItem.toString());
-        
         
         
     	//물품정보 셋팅 정보 저장

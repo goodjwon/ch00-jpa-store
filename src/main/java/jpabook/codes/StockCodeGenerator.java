@@ -28,7 +28,7 @@ public class StockCodeGenerator implements IdentifierGenerator {
 			if (rs.next()) {
 				int id = rs.getInt("nextval");
 				String code = prefix + StringUtils.leftPad("" + id, 3, '0');
-				log.debug("Generated Stock Code: " + code);
+				log.info("Generated Stock Code: " + code);
 				return code;
 			}
 
