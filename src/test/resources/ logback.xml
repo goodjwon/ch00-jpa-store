@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoders are assigned the type
+             ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+        <encoder>
+            <pattern>▶ %-5level %d{HH:mm:ss.SSS} [%thread] %logger[%method:%line] - %msg%n</pattern>
+        </encoder>
+    </appender>
+    
+	<appender name="file" class="ch.qos.logback.core.FileAppender">
+        <file>d:\testFile.log</file>
+        <encoder>
+            <pattern>▶ %-5level %d{HH:mm:ss.SSS} [%thread] %logger[%method:%line] - %msg%n</pattern>
+            <!-- [%method:%line] : 어떤 메소드에 어떤 라인에서 찍혔는지 %msg%n : 찍고 싶은 로그-->
+        </encoder>
+    </appender>
+    
+    <logger name="sonegy.slf4j.sample" level="INFO"></logger>
+    <logger name="javax.persistence" level="INFO"></logger>
+    <logger name="org.springframework.context" level="INFO"></logger>
+    <root level="debug">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="file" />
+    </root>
+</configuration>

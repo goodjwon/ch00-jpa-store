@@ -7,13 +7,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SessionImplementor;
 import org.hibernate.id.IdentifierGenerator;
 
 public class StockCodeGenerator implements IdentifierGenerator {
-	private static Logger log = Logger.getLogger(StockCodeGenerator.class);
+	private static Logger log = LoggerFactory.getLogger(StockCodeGenerator.class);
 
 	public Serializable generate(SessionImplementor session, Object object) throws HibernateException {
 
@@ -33,7 +37,7 @@ public class StockCodeGenerator implements IdentifierGenerator {
 			}
 
 		} catch (SQLException e) {
-			log.error(e);
+			log.error(e.getMessage());
 			throw new HibernateException("Unable to generate Stock Code Sequence");
 		}
 		return null;
