@@ -1,7 +1,5 @@
 package jpabook.model;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -97,7 +95,9 @@ public class Main {
     public static Member getMember(EntityManager em, String memberId){
 
         Member findMember = em.find(Member.class, memberId);
-
+        
+        System.out.println("=============="+Member.class.getName());
+        
         return findMember;
     }
 

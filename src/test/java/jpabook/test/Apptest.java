@@ -1,7 +1,5 @@
 package jpabook.test;
 
-import static org.junit.Assert.*;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -16,7 +14,7 @@ import org.slf4j.LoggerFactory;
 
 public class Apptest {
 	
-	final static Logger log = LoggerFactory.getLogger(Apptest.class);
+	private final static Logger log = LoggerFactory.getLogger(Apptest.class);
 	
 	private static final String PERSISTENCE_UNIT = "jpabook";
     private static EntityManagerFactory emf;
@@ -30,7 +28,7 @@ public class Apptest {
     @BeforeClass
 	public static void setUpClass() throws Exception {
 		
-		log.debug("create entity manager factory");
+		log.info("create entity manager factory");
 		emf =Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 	}
 	
@@ -42,7 +40,7 @@ public class Apptest {
      */
 	@Before
 	public void setUp() throws Exception {
-		log.debug("create entity manager");
+		log.info("create entity manager");
 		em = emf.createEntityManager();
 	}
 	
@@ -54,13 +52,13 @@ public class Apptest {
 	@After
 	public void tearDown() throws Exception {
         try {
-            log.debug("tearDown() started, em=" + em);
+            log.info("tearDown() started, em=" + em);
             em.getTransaction().begin();
             em.flush();            
             //logAutos();            
             em.getTransaction().commit();            
             em.close();
-            log.debug("tearDown() complete, em=" + em);
+            log.info("tearDown() complete, em=" + em);
         }
         catch (Exception ex) {
             log.error("tearDown failed", ex);
@@ -75,7 +73,7 @@ public class Apptest {
 	 */
 	@AfterClass
 	public static void tearDownClass() {
-		log.debug("closing entity manager factory");
+		log.info("closing entity manager factory");
 		emf.close();
 	 }
 	
